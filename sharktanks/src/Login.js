@@ -50,9 +50,6 @@ class Login extends Component {
       <div>
         <MuiThemeProvider>
           <div>
-            <AppBar
-              title="Login"
-            />
             <TextField
               hintText="Enter your Email Address"
               floatingLabelText="Email Address"
