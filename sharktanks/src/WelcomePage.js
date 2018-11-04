@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import Login from './Login';
 import Register from './Register';
 
@@ -60,22 +59,16 @@ class WelcomePage extends Component {
         {this.state.loginscreen}
         <div>
           {this.state.loginmessage}
-          <MuiThemeProvider>
             <div>
-              <RaisedButton
-                label={this.state.buttonLabel}
-                primary={true}
-                style={style}
+            <Button
                 onClick={event => this.handleClick(event)}
-              />
+              >
+              {this.state.buttonLabel}
+              </Button>
             </div>
-          </MuiThemeProvider>
         </div>
       </div>
     );
   }
 }
-const style = {
-  margin: 15,
-};
 export default WelcomePage;

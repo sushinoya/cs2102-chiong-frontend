@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 // import Project from "./Project";
 import axios from 'axios'

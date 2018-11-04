@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import SelectField from "material-ui/SelectField";
-import MenuItem from "material-ui/MenuItem"
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import SelectField from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import axios from 'axios';
 import Login from './Login'
 
@@ -56,25 +54,21 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <MuiThemeProvider>
           <div>
             <TextField
-              hintText="Enter your Name"
-              floatingLabelText="Name"
+              label="Name"
               onChange={(event, newValue) => this.setState({ first_name: newValue })}
             />
             <br />
             <TextField
-              hintText="Enter your Email"
               type="email"
-              floatingLabelText="Email"
+              label="Email"
               onChange={(event, newValue) => this.setState({ email: newValue })}
             />
             <br />
 
             <SelectField
-              hintText="Select your Role"
-              floatingLabelText="Role"
+              label="Role"
               value={this.state.role}
               onChange={this.handleChangeRole}
             >
@@ -85,19 +79,15 @@ class Register extends Component {
 
             <TextField
               type="password"
-              hintText="Enter your Password"
-              floatingLabelText="Password"
+              label="Password"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
-            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+            <Button onClick={(event) => this.handleClick(event)}> Submit </Button>
           </div>
-        </MuiThemeProvider>
       </div>
     );
   }
 }
-const style = {
-  margin: 15,
-};
+
 export default Register;
