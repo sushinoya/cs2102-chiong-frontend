@@ -4,15 +4,16 @@ import Login from "./Login";
 import Register from "./Register";
 import WelcomePage from "./WelcomePage";
 import Projects from './Projects';
+import ProjectPage from "./ProjectPage";
 
 const Routes = () => (
   <>
     <Switch>
       <Route exact path="/" component={WelcomePage} />
       <Route exact path="login" component={Login} />
-      {/* <Route path="/meeting/:showId" component={ShowPage} /> */}
       <Route exact path="/register" component={Register} />
       <Route exact path="/projects" component={Projects} />
+      <Route path="/project/:projectID" component={ProjectPage} />
       <Route path="*" component={WelcomePage} />
     </Switch>
   </>
