@@ -1,11 +1,11 @@
-import React from "react";
-import { Redirect, Switch, Route } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
-import WelcomePage from "./WelcomePage";
-import Projects from './Projects';
-import ProjectPage from "./ProjectPage";
-import TestPage from "./TestPage";
+import React from 'react'
+import { Redirect, Switch, Route } from 'react-router-dom'
+import Login from './Login'
+import Register from './Register'
+import WelcomePage from './WelcomePage'
+import Projects from './Projects'
+import ProjectPage from './ProjectPage'
+import TestPage from './TestPage'
 
 const Routes = () => (
   <>
@@ -19,6 +19,6 @@ const Routes = () => (
       <Route path="*" component={WelcomePage} />
     </Switch>
   </>
-);
+)
 
-export default Routes;
+export default Routes

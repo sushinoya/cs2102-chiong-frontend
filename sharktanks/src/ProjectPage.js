@@ -1,19 +1,18 @@
-import React, { Component } from "react";
-import styles from "./Project.module.scss";
-import ProductImage from "./ProductImage";
-import { Redirect } from 'react-router-dom';
-import './assets/style.min.css';
-const axios = require("axios");
-
+import React, { Component } from 'react'
+import styles from './Project.module.scss'
+import ProductImage from './ProductImage'
+import { Redirect } from 'react-router-dom'
+import './assets/style.min.css'
+const axios = require('axios')
 
 // TODO: Get the name of the user who owns this project from the backend
 // Set the investValue to be project.sum
-// 
+//
 
 class ProjectPage extends Component {
   constructor(props) {
-    super(props);
-    this.projectID = props.match.params.projectID;
+    super(props)
+    this.projectID = props.match.params.projectID
     this.state = {
       project: null,
       investValue: 0,
@@ -21,81 +20,77 @@ class ProjectPage extends Component {
   }
 
   componentWillMount() {
-    this.getProjects().then((data) => {
-      data.data.map((project) => {
+    this.getProjects().then(data => {
+      data.data.map(project => {
         if (project.projectid === this.projectID) {
-          this.setState({project: project});
+          this.setState({ project: project })
         }
       })
     })
   }
 
   getProjects = () => {
-    return axios.get("http://localhost:8080/allProjects");
+    return axios.get('http://localhost:8080/allProjects')
   }
 
-
   render() {
-    var product = this.state.project;
-    console.log("stop")
+    var product = this.state.project
+    console.log('stop')
     console.log(product)
     if (product == null) {
-      return <div></div>
+      return <div />
     }
-
 
     // Test post request.
     var persistAmount = () => {
-      axios.post('http://localhost:8080/giveDonation', {
-        projectID: this.projectID,
-        userID: '1',
-        amount: this.state.investValue
-      }).then(res => {
-        console.log(res.data);
-      });
+      axios
+        .post('http://localhost:8080/giveDonation', {
+          projectID: this.projectID,
+          userID: '1',
+          amount: this.state.investValue,
+        })
+        .then(res => {
+          console.log(res.data)
+        })
     }
 
-    var changeAmount = (sum) => {
-      var newValue = parseInt(this.state.investValue) + parseInt(sum, 10);
-      this.setState({ investValue: newValue });
+    var changeAmount = sum => {
+      var newValue = parseInt(this.state.investValue) + parseInt(sum, 10)
+      this.setState({ investValue: newValue })
     }
 
-
-    var background = '#fff';
+    var background = '#fff'
 
     const category = product => {
-      return <div className="manufacturer">Category: {product.categoryID}</div>;
-    };
+      return <div className="manufacturer">Category: {product.categoryID}</div>
+    }
 
     const tags = product => {
       return (
         <div>
-          {product.words.split(" ").map(function (elem) {
+          {product.words.split(' ').map(function(elem) {
             return (
               <div style={{ display: 'inline' }} className="tag">
                 {elem}{' '}
               </div>
-            );
+            )
           })}
         </div>
-      );
-    };
+      )
+    }
     return (
       <main role="main" id="container" className="main-container push">
         <section className="product">
           <div className="content">
             <div className="product-listing">
               <div className="product-image">
-                <ProductImage
-                  product={product}
-                  background={background}
-                />
+                <ProductImage product={product} background={background} />
               </div>
               <div className="product-description">
                 <h2>{product.title}</h2>
                 <p className="manufacturer">
-                  <span className="hide-content">Created </span>By{' '}
-                  <span className="word-mark">{product.userID}</span>
+                  <span className="hide-content">Created </span>
+                  By <span className="word-mark">{product.userID}</span>
                 </p>
                 {category(product)}
                 {tags(product)}
@@ -118,7 +113,7 @@ class ProjectPage extends Component {
                       value={this.state.investValue}
                       size="2"
                       onChange={event => {
-                        this.changeAmount(event.target.value);
+                        this.changeAmount(event.target.value)
                       }}
                     />
                   </div>
@@ -126,9 +121,10 @@ class ProjectPage extends Component {
                     type="submit"
                     className="submit"
                     onClick={e => {
-                      persistAmount();
-                      e.preventDefault();
-                    }}>
+                      persistAmount()
+                      e.preventDefault()
+                    }}
+                  >
                     Invest
                   </button>
                 </form>
@@ -161,8 +157,8 @@ class ProjectPage extends Component {
           </div>
         </section>
       </main>
-    );
+    )
   }
 }
 
-export default ProjectPage;
+export default ProjectPage
