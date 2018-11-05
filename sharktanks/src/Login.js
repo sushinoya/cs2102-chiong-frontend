@@ -44,7 +44,7 @@ class Login extends Component {
 
         } else if (response.data.code == 204) {
           console.log('Email Address password do not match')
-          alert('Email Address password do not match')
+          alert('The email address and password do not match')
         } else {
           console.log('Email Address does not exists')
           alert('Email Address does not exist')

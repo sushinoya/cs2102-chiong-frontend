@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './Project.module.scss'
 import ProductImage from './ProductImage'
-import { Redirect } from 'react-router-dom'
+import { redirect } from 'react-router-dom'
 import './assets/style.min.css'
 import OnlyLoggedInComponent from "./OnlyLoggedInComponent";
 

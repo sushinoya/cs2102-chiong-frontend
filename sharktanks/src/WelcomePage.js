@@ -47,7 +47,7 @@ class WelcomePage extends Component {
     loginscreen.push(
       <Login parentContext={this} appContext={this.props.parentContext} />
     )
-    var loginmessage = 'Not registered yet, Register Now'
+    var loginmessage = "Do not have an account yet?";
     this.setState({
       loginscreen: loginscreen,
       loginmessage: loginmessage,
