@@ -28,9 +28,6 @@ class Login extends Component {
       .then(function(response) {
         console.log(response)
         if (response.data.code == 200) {
-          alert('Login successfull')
-          console.log('Login successfull')
-
           // const userData = response.data.user;
           const userData = {
             emailaddress: 'ahangupta.96@gmail.com',

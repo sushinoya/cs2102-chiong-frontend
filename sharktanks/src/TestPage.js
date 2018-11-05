@@ -32,7 +32,7 @@ class TestPage extends Component {
 
     // It should also print on the test page
     return (
-      <OnlyLoggedInComponent>
+      <>
         {console.log('Logged in User:')}
         {console.log(user)}
 
@@ -63,7 +63,7 @@ class TestPage extends Component {
         />
 
         <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
-      </OnlyLoggedInComponent>
+      </>
     )
   }
 }
