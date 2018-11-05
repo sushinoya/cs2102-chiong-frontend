@@ -17,7 +17,7 @@ class Projects extends Component {
   }
 
   getProjects = () => {
-    return axios.get('http://localhost:8080/allProjects');
+    return axios.get('http://localhost:8080' + '/' + 'allProjects');
   }
 
   componentWillMount() {
