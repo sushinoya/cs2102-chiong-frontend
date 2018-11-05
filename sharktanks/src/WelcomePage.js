@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import Login from './Login'
 import Register from './Register'
+import formStyles from './FormStyles.module.scss'
 
 class WelcomePage extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class WelcomePage extends Component {
     if (this.state.isLogin) {
       var loginscreen = []
       loginscreen.push(<Register parentContext={this} />)
-      loginmessage = 'Already registered.Go to Login'
+      loginmessage = 'Already have an account?'
       this.setState({
         loginscreen: loginscreen,
         loginmessage: loginmessage,
@@ -31,7 +32,7 @@ class WelcomePage extends Component {
     } else {
       var loginscreen = []
       loginscreen.push(<Login parentContext={this} />)
-      loginmessage = 'Not Registered yet.Go to registration'
+      loginmessage = 'Do not have an account yet?'
       this.setState({
         loginscreen: loginscreen,
         loginmessage: loginmessage,
@@ -53,22 +54,13 @@ class WelcomePage extends Component {
     })
   }
   render() {
-    return (
-      <div className="loginscreen">
+    return <div className={formStyles.flexCenter}>
         {this.state.loginscreen}
         <div>
           {this.state.loginmessage}
-          <div>
-            <RaisedButton
-              label={this.state.buttonLabel}
-              primary={true}
-              style={style}
-              onClick={event => this.handleClick(event)}
-            />
-          </div>
+          <RaisedButton label={this.state.buttonLabel} style={style} onClick={event => this.handleClick(event)} />
         </div>
-      </div>
-    )
+      </div>;
   }
 }
 const style = {

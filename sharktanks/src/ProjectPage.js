@@ -3,7 +3,10 @@ import styles from './Project.module.scss'
 import ProductImage from './ProductImage'
 import { Redirect } from 'react-router-dom'
 import './assets/style.min.css'
+import OnlyLoggedInComponent from "./OnlyLoggedInComponent";
+
 const axios = require('axios')
+
 
 // TODO: Get the name of the user who owns this project from the backend
 // Set the investValue to be project.sum
@@ -79,6 +82,7 @@ class ProjectPage extends Component {
       )
     }
     return (
+      <OnlyLoggedInComponent>
       <main role="main" id="container" className="main-container push">
         <section className="product">
           <div className="content">
@@ -157,6 +161,7 @@ class ProjectPage extends Component {
           </div>
         </section>
       </main>
+      </OnlyLoggedInComponent>
     )
   }
 }

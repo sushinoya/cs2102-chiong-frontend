@@ -8,8 +8,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import RaisedButton from 'material-ui/RaisedButton'
-import { NavLink, Link, Redirect } from 'react-router-dom'
+import RaisedButton from "material-ui/RaisedButton";
+import LoggedStatusIndicator from "./LoggedStatusIndicator";
+import { NavLink } from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class App extends Component {
         accent3Color: brown900,
       },
       appBar: {
-        height: 70,
+        height: 60,
       },
       drawer: {
         width: 200,
@@ -41,24 +42,25 @@ class App extends Component {
       <div className="root">
         <Router className="root">
           <MuiThemeProvider muiTheme={muiTheme}>
-            <AppBar
-              title="SharkTanks"
-              onLeftIconButtonClick={this.handleToggle}
-            />
-            <Routes />
+            <>
+              <AppBar
+                title="SharkTanks"
+                onLeftIconButtonClick={this.handleToggle}
+                iconElementRight={<LoggedStatusIndicator />}
+              />
+              <Routes />
 
-            <Drawer
-              open={this.state.open}
-              docked={false}
-              onRequestChange={open => this.setState({ open })}
-            >
-              <MenuItem onClick={this.handleClose}>Home Page</MenuItem>
-              <MenuItem onClick={this.handleClose}>All Projects</MenuItem>
-              <MenuItem onClick={this.handleClose}>
-                Projects By Category
-              </MenuItem>
-              <MenuItem onClick={this.handleClose}>Add New Project</MenuItem>
-            </Drawer>
+              <Drawer
+                open={this.state.open}
+                docked={false}
+                onRequestChange={open => this.setState({ open })}
+              >
+                <NavLink className="noUnderline" to='/'><MenuItem onClick={this.handleToggle}>Home Page</MenuItem></NavLink>
+                <NavLink className="noUnderline" to='/projects'><MenuItem onClick={this.handleToggle}>All Projects</MenuItem></NavLink>
+                <NavLink className="noUnderline" to='/projects'><MenuItem onClick={this.handleToggle}> Projects By Category </MenuItem></NavLink>
+                <NavLink className="noUnderline" to='/projects'><MenuItem onClick={this.handleToggle}>Add New Project</MenuItem></NavLink>
+              </Drawer>
+            </>
           </MuiThemeProvider>
         </Router>
       </div>

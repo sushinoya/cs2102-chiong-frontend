@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
-import RaisedButton from 'material-ui/RaisedButton'
+import RaisedButton from "material-ui/RaisedButton";
 import TextField from 'material-ui/TextField'
 import axios from 'axios'
+import { localLogIn } from './LoginUtil';
+import formStyles from './FormStyles.module.scss'
 
 class Login extends Component {
   constructor(props) {
@@ -28,9 +30,18 @@ class Login extends Component {
         if (response.data.code == 200) {
           alert('Login successfull')
           console.log('Login successfull')
-          // var uploadScreen = [];
-          // uploadScreen.push(<UploadScreen appContext={self.props.appContext} />)
-          // self.props.appContext.setState({ loginPage: [], uploadScreen: uploadScreen })
+
+          // const userData = response.data.user;
+          const userData = {
+            emailaddress: 'ahangupta.96@gmail.com',
+            userid: 1,
+            name: 'Ahan Gupta',
+            role: 'Entrepreneur',
+          };
+
+          // Save in Local Storage
+          localLogIn(userData);
+
         } else if (response.data.code == 204) {
           console.log('Email Address password do not match')
           alert('Email Address password do not match')
@@ -47,7 +58,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className={formStyles.flexCenter}>
           <TextField
             hintText="Enter your Email Address"
             floatingLabelText="Email Address"
@@ -64,7 +75,7 @@ class Login extends Component {
           />
           <br />
           <RaisedButton
-            label="Submit"
+            label="Login"
             primary={true}
             style={style}
             onClick={event => this.handleClick(event)}

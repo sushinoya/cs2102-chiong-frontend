@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import ProductImage from './ProductImage'
 import './assets/style.min.css'
+import OnlyLoggedInComponent from "./OnlyLoggedInComponent";
 
 class Projects extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class Projects extends Component {
       var products = this.state.projects
 
       return (
+        <OnlyLoggedInComponent>
         <main role="main" id="container" className="main-container push">
           <section className="products">
             <div className="content">
@@ -72,6 +74,7 @@ class Projects extends Component {
             </div>
           </section>
         </main>
+        </OnlyLoggedInComponent>
       )
     }
 

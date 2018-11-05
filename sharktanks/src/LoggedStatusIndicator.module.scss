@@ -1,0 +1,12 @@
+.sameLine {
+  width: 200px;
+  color: white;
+  display: flex;
+  direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.noMargin {
+  margin: 6px 0px;
+}

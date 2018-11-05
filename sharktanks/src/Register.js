@@ -5,6 +5,8 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import axios from 'axios'
 import Login from './Login'
+import formStyles from "./FormStyles.module.scss";
+
 
 class Register extends Component {
   constructor(props) {
@@ -61,7 +63,7 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className={formStyles.flexCenter}>
           <TextField
             hintText="Enter your Name"
             floatingLabelText="Name"
@@ -99,7 +101,7 @@ class Register extends Component {
           />
           <br />
           <RaisedButton
-            label="Submit"
+            label="Register"
             primary={true}
             style={style}
             onClick={event => this.handleClick(event)}
