@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import ProductImage from './ProductImage'
 import './assets/style.min.css'
-import OnlyLoggedInComponent from "./OnlyLoggedInComponent";
+import OnlyLoggedInComponent from './OnlyLoggedInComponent'
 
 class Projects extends Component {
   constructor(props) {
@@ -17,13 +17,13 @@ class Projects extends Component {
   }
 
   componentWillMount() {
-    this.getProjects().then(response => {
+    this.getProjects().then((response) => {
       console.log(response.data)
       this.setState({ projects: response.data })
     })
   }
 
-  category = product => {
+  category = (product) => {
     return <div className="price">Category: {product.name}</div>
   }
 
@@ -33,47 +33,47 @@ class Projects extends Component {
 
       return (
         <OnlyLoggedInComponent>
-        <main role="main" id="container" className="main-container push">
-          <section className="products">
-            <div className="content">
-              <div className="product-list">
-                {this.state.projects.map(function(product) {
-                  let background
-                  if (product.background_colour) {
-                    background = product.background_colour
-                  } else {
-                    background = '#d9d9d9'
-                  }
+          <main role="main" id="container" className="main-container push">
+            <section className="products">
+              <div className="content">
+                <div className="product-list">
+                  {this.state.projects.map(function(product) {
+                    let background
+                    if (product.background_colour) {
+                      background = product.background_colour
+                    } else {
+                      background = '#d9d9d9'
+                    }
 
-                  return (
-                    <a
-                      className="product-item"
-                      href={'/project/' + product.projectid}
-                      key={product.projectid}
-                    >
-                      <div
-                        className="product-image"
-                        style={{ background: background }}
+                    return (
+                      <a
+                        className="product-item"
+                        href={'/project/' + product.projectid}
+                        key={product.projectid}
                       >
-                        <ProductImage product={product} products={products} />
-                      </div>
-                      <div className="overlay">
                         <div
-                          className="overlay-background"
-                          style={{ background: '#aaaaaa' }}
-                        />
-                        <div className="overlay-content">
-                          <div className="title">{product.title}</div>
-                          {product.name}
+                          className="product-image"
+                          style={{ background: background }}
+                        >
+                          <ProductImage product={product} products={products} />
                         </div>
-                      </div>
-                    </a>
-                  )
-                })}
+                        <div className="overlay">
+                          <div
+                            className="overlay-background"
+                            style={{ background: '#aaaaaa' }}
+                          />
+                          <div className="overlay-content">
+                            <div className="title">{product.title}</div>
+                            {product.name}
+                          </div>
+                        </div>
+                      </a>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          </section>
-        </main>
+            </section>
+          </main>
         </OnlyLoggedInComponent>
       )
     }

@@ -2,12 +2,12 @@ import React from 'react'
 import photo1 from './assets/img/products/lamp1-trans.png'
 import photo2 from './assets/img/products/lamp2-trans.png'
 
-const ProductImage = props => {
+const ProductImage = (props) => {
   let file
   let fileId
   let placeholder = [photo1, photo2][Math.floor(0.5 + Math.random())]
 
-  var isThereAMainImage = product => {
+  var isThereAMainImage = (product) => {
     //fileId = props.product.relationships.main_image.data.id;
     file = props.product.url
     console.log(file)
@@ -26,7 +26,7 @@ const ProductImage = props => {
     )
   }
 
-  var isThereAFile = product => {
+  var isThereAFile = (product) => {
     try {
       fileId = props.product.relationships.files.data[0].id
       file = props.products.included.files.find(function(el) {

@@ -17,7 +17,7 @@ class WelcomePage extends Component {
     }
   }
 
-  handleClick = event => {
+  handleClick = (event) => {
     var loginmessage
     if (this.state.isLogin) {
       var loginscreen = []
@@ -47,20 +47,26 @@ class WelcomePage extends Component {
     loginscreen.push(
       <Login parentContext={this} appContext={this.props.parentContext} />
     )
-    var loginmessage = "Do not have an account yet?";
+    var loginmessage = 'Do not have an account yet?'
     this.setState({
       loginscreen: loginscreen,
       loginmessage: loginmessage,
     })
   }
   render() {
-    return <div className={formStyles.flexCenter}>
+    return (
+      <div className={formStyles.flexCenter}>
         {this.state.loginscreen}
         <div>
           {this.state.loginmessage}
-          <RaisedButton label={this.state.buttonLabel} style={style} onClick={event => this.handleClick(event)} />
+          <RaisedButton
+            label={this.state.buttonLabel}
+            style={style}
+            onClick={(event) => this.handleClick(event)}
+          />
         </div>
-      </div>;
+      </div>
+    )
   }
 }
 const style = {

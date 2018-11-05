@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
-import RaisedButton from "material-ui/RaisedButton";
+import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import axios from 'axios'
-import { localLogIn } from './LoginUtil';
+import { localLogIn } from './LoginUtil'
 import formStyles from './FormStyles.module.scss'
 
 class Login extends Component {
@@ -16,7 +16,7 @@ class Login extends Component {
     }
   }
 
-  handleClick = event => {
+  handleClick = (event) => {
     var apiBaseUrl = 'http://localhost:8080/'
     var self = this
     var payload = {
@@ -37,11 +37,10 @@ class Login extends Component {
             userid: 1,
             name: 'Ahan Gupta',
             role: 'Entrepreneur',
-          };
+          }
 
           // Save in Local Storage
-          localLogIn(userData);
-
+          localLogIn(userData)
         } else if (response.data.code == 204) {
           console.log('Email Address password do not match')
           alert('The email address and password do not match')
@@ -78,7 +77,7 @@ class Login extends Component {
             label="Login"
             primary={true}
             style={style}
-            onClick={event => this.handleClick(event)}
+            onClick={(event) => this.handleClick(event)}
           />
         </div>
       </div>

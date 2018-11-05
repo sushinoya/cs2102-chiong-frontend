@@ -8,8 +8,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import RaisedButton from "material-ui/RaisedButton";
-import LoggedStatusIndicator from "./LoggedStatusIndicator";
+import RaisedButton from 'material-ui/RaisedButton'
+import LoggedStatusIndicator from './LoggedStatusIndicator'
 import { NavLink } from 'react-router-dom'
 
 class App extends Component {
@@ -53,12 +53,25 @@ class App extends Component {
               <Drawer
                 open={this.state.open}
                 docked={false}
-                onRequestChange={open => this.setState({ open })}
+                onRequestChange={(open) => this.setState({ open })}
               >
-                <NavLink className="noUnderline" to='/'><MenuItem onClick={this.handleToggle}>Home Page</MenuItem></NavLink>
-                <NavLink className="noUnderline" to='/projects'><MenuItem onClick={this.handleToggle}>All Projects</MenuItem></NavLink>
-                <NavLink className="noUnderline" to='/projects'><MenuItem onClick={this.handleToggle}> Projects By Category </MenuItem></NavLink>
-                <NavLink className="noUnderline" to='/projects'><MenuItem onClick={this.handleToggle}>Add New Project</MenuItem></NavLink>
+                <NavLink className="noUnderline" to="/">
+                  <MenuItem onClick={this.handleToggle}>Home Page</MenuItem>
+                </NavLink>
+                <NavLink className="noUnderline" to="/projects">
+                  <MenuItem onClick={this.handleToggle}>All Projects</MenuItem>
+                </NavLink>
+                <NavLink className="noUnderline" to="/projects">
+                  <MenuItem onClick={this.handleToggle}>
+                    {' '}
+                    Projects By Category{' '}
+                  </MenuItem>
+                </NavLink>
+                <NavLink className="noUnderline" to="/projects">
+                  <MenuItem onClick={this.handleToggle}>
+                    Add New Project
+                  </MenuItem>
+                </NavLink>
               </Drawer>
             </>
           </MuiThemeProvider>
