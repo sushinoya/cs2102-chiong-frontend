@@ -6,6 +6,10 @@ import './assets/style.min.css';
 const axios = require("axios");
 
 
+// TODO: Get the name of the user who owns this project from the backend
+// Set the investValue to be project.sum
+// 
+
 class ProjectPage extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +28,6 @@ class ProjectPage extends Component {
         }
       })
     })
-
   }
 
   getProjects = () => {
@@ -40,41 +43,23 @@ class ProjectPage extends Component {
       return <div></div>
     }
 
-    var updateQuantity = quantity => {
-      // this.props.dispatch(dispatch => {
-      //   dispatch({ type: UPDATE_QUANTITY, payload: quantity });
-      // });
-    };
 
     // Test post request.
-    var persistAmount = (amount) => {
+    var persistAmount = () => {
       axios.post('http://localhost:8080/giveDonation', {
         projectID: this.projectID,
         userID: '1',
-        amount: amount
+        amount: this.state.investValue
       }).then(res => {
         console.log(res.data);
       });
     }
 
-    var changeAmount = (quantity) => {
-      var newValue = parseInt(this.state.investValue, 10) + parseInt(quantity, 10);
+    var changeAmount = (sum) => {
+      var newValue = parseInt(this.state.investValue) + parseInt(sum, 10);
       this.setState({ investValue: newValue });
     }
 
-    
-    function isThereACurrencyPrice() {
-      try {
-        return (
-          <p className="price">
-            <span className="hide-content">Unit price </span>
-            {'$' + product.meta.display_price.with_tax.amount / 100}
-          </p>
-        );
-      } catch (e) {
-        return <div className="price">Price not available</div>;
-      }
-    }
 
     var background = '#fff';
 
@@ -103,7 +88,6 @@ class ProjectPage extends Component {
               <div className="product-image">
                 <ProductImage
                   product={product}
-                  // products={products}
                   background={background}
                 />
               </div>
@@ -131,10 +115,10 @@ class ProjectPage extends Component {
                       type="number"
                       min="1`"
                       max="20000000"
-                      value={"this.props.product.quantity"}
+                      value={this.state.investValue}
                       size="2"
                       onChange={event => {
-                        updateQuantity(event.target.value);
+                        this.changeAmount(event.target.value);
                       }}
                     />
                   </div>
@@ -142,9 +126,7 @@ class ProjectPage extends Component {
                     type="submit"
                     className="submit"
                     onClick={e => {
-                      console.log("this.props.product.quantity");
-                      persistAmount("this.props.product.quantity");
-                      changeAmount("this.props.product.quantity");
+                      persistAmount();
                       e.preventDefault();
                     }}>
                     Invest

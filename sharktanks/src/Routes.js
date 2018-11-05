@@ -5,7 +5,6 @@ import Register from "./Register";
 import WelcomePage from "./WelcomePage";
 import Projects from './Projects';
 import ProjectPage from "./ProjectPage";
-
 const Routes = () => (
   <>
     <Switch>
