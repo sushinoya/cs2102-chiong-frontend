@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './assets/style.min.css'
-import { getProjects, getProjectWithId, getProjectFunding, getProjectWithStatus, getProjectWithCategory} from './Queries'
+import { getProjects, getProjectWithId, getProjectFunding, getProjectWithStatus, getProjectWithCategory, createUser} from './Queries'
 import { loggedInUser, localLogIn, localLogOut } from './LoginUtil'
 import RaisedButton from 'material-ui/RaisedButton'
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
@@ -15,7 +15,7 @@ class TestPage extends Component {
 
   componentWillMount() {
     // Test your query here and set the result to be the state
-    getProjectWithStatus(1).then((res) => {
+    createUser('a','a','a','a').then((res) => {
       this.setState({ data: res.data })
     })
   }
