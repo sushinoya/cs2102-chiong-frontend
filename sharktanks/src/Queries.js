@@ -47,6 +47,38 @@ export function getAllCategories() {
 	return axios.get(SERVER_URL + 'getAllCategories');
 }
 
+//search by user
+
+export function getProjectWithUser(id, role) {
+		const params = {
+		id: id,
+		role: role
+	}
+  	return axios.get(SERVER_URL + 'searchByUser', { params })
+}
+
+//search by keyword
+
+// export function searchByKeyword(words) {
+// 		const params = {
+// 		words: words
+// 	}
+//   	return axios.get(SERVER_URL + 'searchByKeyword', { params })
+// }
+
+//DELETE requests
+
+//delete project
+
+export function deleteProject(id) {
+	const params = {
+		id: id
+	}
+	return axios.delete(SERVER_URL + 'deleteProject', { params })
+}
+
+//delete
+
 //POST requests
 
 //create user
@@ -120,8 +152,39 @@ export function giveDonation(projectID, userID,amount) {
 }
 
 
-
-
 export function getAllKeywords() {
 	return axios.get(SERVER_URL + 'getKeywords');
 }
+
+//updateuserid
+
+export function updateUserId(userId) {
+	const params = {
+		userId: userId
+	}
+	return axios.post(SERVER_URL + 'updateUserId', params)
+}
+
+//update projectid
+
+export function updateProjectId(projectId) {
+	const params = {
+		projectId: projectId
+	}
+	return axios.post(SERVER_URL + 'updateProjectId', params)
+}
+
+//update donation id
+
+export function updateDonationId(donationId) {
+	const params = {
+		donationId: donationId
+	}
+	return axios.post(SERVER_URL + 'updateDonationId', params)
+}
+
+//searchbystatus
+
+//searchbyuser
+
+//getkeywords
