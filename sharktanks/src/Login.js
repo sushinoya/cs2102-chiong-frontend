@@ -28,14 +28,9 @@ class Login extends Component {
       .then(function(response) {
         console.log(response)
         if (response.data.code == 200) {
-          // const userData = response.data.user;
-          const userData = {
-            emailaddress: 'ahangupta.96@gmail.com',
-            userid: 1,
-            name: 'Ahan Gupta',
-            role: 'Entrepreneur',
-          }
-
+          const userData = response.data.user;
+          console.log(userData)
+          localStorage.setItem('logged-in-user', null)
           // Save in Local Storage
           localLogIn(userData)
         } else if (response.data.code == 204) {
