@@ -38,8 +38,14 @@ export function getProjectWithCategory(id) {
   	return axios.get(SERVER_URL + 'SearchByCategories', payload)
 }
 
-
 // Gives all the projects associated with a particular user with a particular role.
 
 //POST requests
 
+//create user
+
+//create project
+
+//give donation
+
+//login
