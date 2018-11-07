@@ -60,3 +60,6 @@ export function getAllCategories() {
 	return axios.get(SERVER_URL + 'getAllCategories');
 }
 
+export function getAllKeywords() {
+	return axios.get(SERVER_URL + 'getKeywords');
+}
