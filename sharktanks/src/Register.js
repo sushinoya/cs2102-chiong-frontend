@@ -17,7 +17,7 @@ class Register extends Component {
       password: null,
     }
   }
-
+  
   handleClick = (event) => {
     var apiBaseUrl = 'http://localhost:8080/'
     console.log(

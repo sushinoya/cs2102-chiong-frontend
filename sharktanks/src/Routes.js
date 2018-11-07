@@ -6,6 +6,7 @@ import WelcomePage from './WelcomePage'
 import Projects from './Projects'
 import ProjectPage from './ProjectPage'
 import TestPage from './TestPage'
+import CreateProject from './CreateProject';
 
 const Routes = () => (
   <>
@@ -15,10 +16,11 @@ const Routes = () => (
       <Route exact path="/register" component={Register} />
       <Route exact path="/projects" component={Projects} />
       <Route exact path="/test" component={TestPage} />
+      <Route exact path="/create" component={CreateProject} />
       <Route path="/project/:projectID" component={ProjectPage} />
       <Route path="*" component={WelcomePage} />
     </Switch>
   </>
-)
+);
 
 export default Routes

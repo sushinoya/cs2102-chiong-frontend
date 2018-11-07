@@ -4,20 +4,37 @@ import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import axios from 'axios'
-import Login from './Login'
 import formStyles from './FormStyles.module.scss'
 import { loggedInUser } from './LoginUtil';
+import { getAllStatuses, getAllCategories } from './Queries';
 
 class CreateProject extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      description: '',
-      status: '',
+      title: null,
+      description: null,
+      status: null,
       userID: loggedInUser().userID,
-      category: ''
+      category: [],
+      keywords: [],
+      possibleStatuses: [],
+      possibleCategories: []
     }
+  }
+
+  componentWillMount() {
+    getAllCategories().then((data) => {
+      const categories = data.data.map(x => { return x.name })
+      this.setState({ possibleCategories: categories });
+    });
+
+    getAllStatuses().then((data) => {
+      const statuses = data.data.map(x => { return x.statusword })
+      console.log(statuses)
+      this.setState({ possibleStatuses: statuses })
+    });
+
   }
 
   handleClick = (event) => {
@@ -28,72 +45,93 @@ class CreateProject extends Component {
       description: this.state.description,
       status: this.state.status,
       userID: this.state.userID,
-      category: this.state.category
+      category: this.state.category,
+      keywords: this.state.keywords
     }
 
-    axios
-      .post(apiBaseUrl + 'createProject', payload)
-      .then(function (response) {
-        console.log(response)
-        if (response.data.code == 200) {
-          console.log("project created");
-          alert("Project " + this.state.title + " created successfully!");
-        } else {
-          alert("Information entered is invalid. Please check before proceeding");
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-        alert("Information entered is invalid. Please check before proceeding");
-      })
+    console.log(payload)
+
+    // axios
+    //   .post(apiBaseUrl + 'createProject', payload)
+    //   .then(function (response) {
+    //     console.log(response)
+    //     if (response.data.code == 200) {
+    //       console.log("project created");
+    //       alert("Project " + this.state.title + " created successfully!");
+    //     } else {
+    //       alert("Information entered is invalid. Please check before proceeding");
+    //     }
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //     alert("Information entered is invalid. Please check before proceeding");
+    //   })
   }
 
-  handleChangeRole = (event, index, value) => this.setState({ role: value })
+  handleChangeCategory = (event, index, value) => this.setState({ category: value })
+  handleChangeStatus = (event, index, value) => this.setState({ status: value })
 
   render() {
+
+    const categoryMenuItems = this.state.possibleCategories
+    .map((x) => {
+      return <MenuItem value={x} primaryText={x} />
+    });
+
+    const statusMenuItems = this.state.possibleStatuses
+    .map((x) => {
+      return <MenuItem value={x} primaryText={x} />
+    });
+
     return (
       <div>
         <div className={formStyles.flexCenter}>
           <TextField
-            hintText="Enter your Name"
-            floatingLabelText="Name"
+            hintText="Enter Project Title"
+            floatingLabelText="Title"
             onChange={(event, newValue) =>
-              this.setState({ name: newValue })
+              this.setState({ title: newValue })
             }
           />
           <br />
           <TextField
-            hintText="Enter your Email"
-            type="email"
-            floatingLabelText="Email"
-            onChange={(event, newValue) => this.setState({ email: newValue })}
+            hintText="Enter Project Description"
+            floatingLabelText="Project Description"
+            onChange={(event, newValue) => this.setState({ description: newValue })}
           />
           <br />
 
           <SelectField
-            hintText="Select your Role"
-            floatingLabelText="Role"
-            value={this.state.role}
-            onChange={this.handleChangeRole}
+            hintText="Select Project Category"
+            floatingLabelText="Project Category"
+            value={this.state.category}
+            onChange={this.handleChangeCategory}
           >
-            <MenuItem value={'Entrepreneur'} primaryText="Entrepreneur" />
-            <MenuItem value={'Investor'} primaryText="Investor" />
+            {categoryMenuItems}
           </SelectField>
+
           <br />
 
+          <SelectField
+            hintText="Select Project Status"
+            floatingLabelText="Project Status"
+            value={this.state.status}
+            onChange={this.handleChangeStatus}
+          >
+            {statusMenuItems}
+          </SelectField>
+
           <TextField
-            type="password"
-            hintText="Enter your Password"
-            floatingLabelText="Password"
+            hintText="Separated by commas"
+            floatingLabelText="Keywords (optional)"
             onChange={(event, newValue) =>
-              this.setState({ password: newValue })
+              this.setState({ keywords: newValue })
             }
           />
           <br />
           <RaisedButton
-            label="CreateProject"
+            label="Create Project"
             primary={true}
-            style={style}
             onClick={(event) => this.handleClick(event)}
           />
         </div>
@@ -101,7 +139,6 @@ class CreateProject extends Component {
     )
   }
 }
-const style = {
-  margin: 15,
-}
+
+
 export default CreateProject
