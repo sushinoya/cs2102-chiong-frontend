@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './assets/style.min.css'
-import { getProjects } from './Queries'
+import { getProjects, getProjectWithId, getFunding } from './Queries'
 import { loggedInUser, localLogIn, localLogOut } from './LoginUtil'
 import RaisedButton from 'material-ui/RaisedButton'
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
@@ -15,7 +15,7 @@ class TestPage extends Component {
 
   componentWillMount() {
     // Test your query here and set the result to be the state
-    getProjects().then((res) => {
+    getProjectWithId(1).then((res) => {
       this.setState({ data: res.data })
     })
   }
@@ -61,8 +61,10 @@ class TestPage extends Component {
             this.rerenderComponent()
           }}
         />
-
+        {console.log('return data from request')}
         <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
+        {console.log('return data from request')}
+
       </>
     )
   }
