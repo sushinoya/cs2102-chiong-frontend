@@ -11,13 +11,13 @@ class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      email: '',
-      role: '',
-      password: '',
+      name: null,
+      email: null,
+      role: null,
+      password: null,
     }
   }
-
+  
   handleClick = (event) => {
     var apiBaseUrl = 'http://localhost:8080/'
     console.log(
@@ -35,25 +35,25 @@ class Register extends Component {
       password: this.state.password,
     }
 
+    if (!payload.name || !payload.emailAddress || !payload.role || !payload.password) {
+      alert('All fields must be filled!');
+      return
+    }
+
     axios
       .post(apiBaseUrl + 'createUser', payload)
       .then(function(response) {
         console.log(response)
         if (response.data.code == 200) {
-          //  console.log("registration successfull");
-          var loginscreen = []
-          loginscreen.push(<Login parentContext={this} />)
-          var loginmessage = 'Not Registered yet.Go to registration'
-          self.props.parentContext.setState({
-            loginscreen: loginscreen,
-            loginmessage: loginmessage,
-            buttonLabel: 'Register',
-            isLogin: true,
-          })
+          console.log("registration successfull");
+          alert("Registration successful! Proceed to Login :)");
+        } else {
+          alert("Account already exists or infomation entered is invalid!");
         }
       })
       .catch(function(error) {
         console.log(error)
+        alert("Account already exists or infomation entered is invalid!");
       })
   }
 
@@ -67,7 +67,7 @@ class Register extends Component {
             hintText="Enter your Name"
             floatingLabelText="Name"
             onChange={(event, newValue) =>
-              this.setState({ first_name: newValue })
+              this.setState({ name: newValue })
             }
           />
           <br />

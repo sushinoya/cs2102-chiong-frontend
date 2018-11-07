@@ -51,3 +51,12 @@ export function getProjectFunding(id) {
 //give donation
 
 //login
+
+export function getAllStatuses() {
+	return axios.get(SERVER_URL + 'getAllStatus');
+}
+
+export function getAllCategories() {
+	return axios.get(SERVER_URL + 'getAllCategories');
+}
+
