@@ -57,6 +57,12 @@ export function getProjectWithUser(id, role) {
   	return axios.get(SERVER_URL + 'searchByUser', { params })
 }
 
+//getkeywords
+
+export function getKeywords() {
+	return axios.get(SERVER_URL + 'getKeywords');
+}
+
 //search by keyword
 
 // export function searchByKeyword(words) {
@@ -183,8 +189,7 @@ export function updateDonationId(donationId) {
 	return axios.post(SERVER_URL + 'updateDonationId', params)
 }
 
-//searchbystatus
 
-//searchbyuser
 
-//getkeywords
+
+
