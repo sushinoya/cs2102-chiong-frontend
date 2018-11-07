@@ -122,3 +122,6 @@ export function giveDonation(projectID, userID,amount) {
 
 
 
+export function getAllKeywords() {
+	return axios.get(SERVER_URL + 'getKeywords');
+}

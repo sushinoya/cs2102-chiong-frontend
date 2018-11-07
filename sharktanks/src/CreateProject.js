@@ -18,6 +18,8 @@ class CreateProject extends Component {
       userID: loggedInUser().userID,
       category: [],
       keywords: [],
+      categoryID: null,
+      statusID: null,
       possibleStatuses: [],
       possibleCategories: []
     }
@@ -25,17 +27,37 @@ class CreateProject extends Component {
 
   componentWillMount() {
     getAllCategories().then((data) => {
+      this.setState({ allCategoriesHash: data.data });
+      console.log(this.state.allCategoriesHash);
       const categories = data.data.map(x => { return x.name })
       this.setState({ possibleCategories: categories });
     });
 
     getAllStatuses().then((data) => {
+      this.setState({allStatusHash : data.data})
       const statuses = data.data.map(x => { return x.statusword })
-      console.log(statuses)
+      console.log(data.data)
       this.setState({ possibleStatuses: statuses })
     });
 
   }
+
+  getIDForStatus = (statusString) => {
+    var result = this.state.allStatusHash.filter((obj) => {
+      return obj.statusword === statusString;
+    });
+
+    return result[0].statusid
+  }
+
+  getIDForCategory = (categoryString) => {
+    var result = this.state.allCategoriesHash.filter((obj) => {
+      return obj.name === categoryString;
+    });
+
+    return result[0].categoryid;
+  }
+
 
   handleClick = (event) => {
     var apiBaseUrl = 'http://localhost:8080/'
@@ -43,9 +65,9 @@ class CreateProject extends Component {
     var payload = {
       title: this.state.title,
       description: this.state.description,
-      status: this.state.status,
+      statusID: this.state.status,
       userID: this.state.userID,
-      category: this.state.category,
+      categoryID: this.state.category,
       keywords: this.state.keywords
     }
 
@@ -68,8 +90,15 @@ class CreateProject extends Component {
     //   })
   }
 
-  handleChangeCategory = (event, index, value) => this.setState({ category: value })
-  handleChangeStatus = (event, index, value) => this.setState({ status: value })
+  handleChangeCategory = (event, index, value) => {
+    this.setState({ categoryID: this.getIDForCategory(value) });
+    this.setState({ category: value });
+    
+  }
+  handleChangeStatus = (event, index, value) => {
+    this.setState({ statusID: this.getIDForStatus(value) });
+    this.setState({ status: value });
+  }
 
   render() {
 

@@ -67,7 +67,7 @@ class App extends Component {
                     Projects By Category{' '}
                   </MenuItem>
                 </NavLink>
-                <NavLink className="noUnderline" to="/projects">
+                <NavLink className="noUnderline" to="/create">
                   <MenuItem onClick={this.handleToggle}>
                     Add New Project
                   </MenuItem>
