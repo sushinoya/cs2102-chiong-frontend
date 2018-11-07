@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './assets/style.min.css'
-import { getProjects } from './Queries'
+import { getProjects, getProjectWithId } from './Queries'
 import { loggedInUser, localLogIn, localLogOut } from './LoginUtil'
 import RaisedButton from 'material-ui/RaisedButton'
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
@@ -61,8 +61,10 @@ class TestPage extends Component {
             this.rerenderComponent()
           }}
         />
-
+        {console.log('return data from request')}
         <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
+        {console.log('return data from request')}
+
       </>
     )
   }
