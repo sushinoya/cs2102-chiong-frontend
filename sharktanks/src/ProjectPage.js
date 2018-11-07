@@ -3,6 +3,7 @@ import styles from './Project.module.scss'
 import ProductImage from './ProductImage'
 import { redirect } from 'react-router-dom'
 import './assets/style.min.css'
+import { getProjectFunding } from './Queries.js'
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
 
 const axios = require('axios')
@@ -18,10 +19,14 @@ class ProjectPage extends Component {
     this.state = {
       project: null,
       investValue: 0,
+      productValue: 0
     }
   }
 
   componentWillMount() {
+    getProjectFunding(this.projectID).then((data) => {
+      this.setState({productValue: data.data[0].sum});
+    })
     this.getProjects().then((data) => {
       data.data.map((project) => {
         if (project.projectid === this.projectID) {
@@ -43,7 +48,7 @@ class ProjectPage extends Component {
       return <div />
     }
 
-    // Test post request.
+    // Figure out how to update productValue after investment occurs.
     var persistAmount = () => {
       axios
         .post('http://localhost:8080/giveDonation', {
@@ -56,7 +61,7 @@ class ProjectPage extends Component {
         })
     }
 
-    var changeAmount = (sum) => {
+    const changeAmount = (sum) => {
       var newValue = parseInt(this.state.investValue) + parseInt(sum, 10)
       this.setState({ investValue: newValue })
     }
@@ -116,7 +121,7 @@ class ProjectPage extends Component {
                         value={this.state.investValue}
                         size="2"
                         onChange={(event) => {
-                          this.changeAmount(event.target.value)
+                          changeAmount(event.target.value)
                         }}
                       />
                     </div>
@@ -152,7 +157,7 @@ class ProjectPage extends Component {
 
                     <div className="row">
                       <div className="label"> Money Raised </div>
-                      <div className="value">{this.state.investValue}</div>
+                      <div className="value">{this.state.productValue}</div>
                     </div>
                   </div>
                 </div>

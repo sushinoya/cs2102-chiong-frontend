@@ -3,6 +3,7 @@ import axios from 'axios'
 import ProductImage from './ProductImage'
 import './assets/style.min.css'
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
+import SearchBar from './SearchBar'
 
 class Projects extends Component {
   constructor(props) {
@@ -32,6 +33,8 @@ class Projects extends Component {
       var products = this.state.projects
 
       return (
+        <div>
+        <SearchBar />
         <OnlyLoggedInComponent>
           <main role="main" id="container" className="main-container push">
             <section className="products">
@@ -75,6 +78,7 @@ class Projects extends Component {
             </section>
           </main>
         </OnlyLoggedInComponent>
+        </div>
       )
     }
 
