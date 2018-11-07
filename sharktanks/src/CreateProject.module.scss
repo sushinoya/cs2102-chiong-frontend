@@ -1,0 +1,11 @@
+.flexy {
+  width: 500px;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.flexy>* {
+        flex: 1 1 160px;
+}
