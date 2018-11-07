@@ -12,7 +12,7 @@ export function getProjectWithId(id) { //searchByProjects
 	const params = {
 		id: id
 	}
-  	return axios.get(SERVER_URL + 'searchByProjects', { params })
+  return axios.get(SERVER_URL + 'searchByProjects', { params })
 }
 
 // Searches for all the projects with a particular statusId. 

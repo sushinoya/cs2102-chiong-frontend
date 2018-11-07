@@ -6,54 +6,45 @@ import MenuItem from 'material-ui/MenuItem'
 import axios from 'axios'
 import Login from './Login'
 import formStyles from './FormStyles.module.scss'
+import { loggedInUser } from './LoginUtil';
 
-class Register extends Component {
+class CreateProject extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: null,
-      email: null,
-      role: null,
-      password: null,
+      title: '',
+      description: '',
+      status: '',
+      userID: loggedInUser().userID,
+      category: ''
     }
   }
 
   handleClick = (event) => {
     var apiBaseUrl = 'http://localhost:8080/'
-    console.log(
-      'values',
-      this.state.name,
-      this.state.email,
-      this.state.role,
-      this.state.password
-    )
-    var self = this
-    var payload = {
-      name: this.state.name,
-      emailAddress: this.state.email,
-      role: this.state.role,
-      password: this.state.password,
-    }
 
-    if (!payload.name || !payload.emailAddress || !payload.role || !payload.password) {
-      alert('All fields must be filled!');
-      return
+    var payload = {
+      title: this.state.title,
+      description: this.state.description,
+      status: this.state.status,
+      userID: this.state.userID,
+      category: this.state.category
     }
 
     axios
-      .post(apiBaseUrl + 'createUser', payload)
-      .then(function(response) {
+      .post(apiBaseUrl + 'createProject', payload)
+      .then(function (response) {
         console.log(response)
         if (response.data.code == 200) {
-          console.log("registration successfull");
-          alert("Registration successful! Proceed to Login :)");
+          console.log("project created");
+          alert("Project " + this.state.title + " created successfully!");
         } else {
-          alert("Account already exists or infomation entered is invalid!");
+          alert("Information entered is invalid. Please check before proceeding");
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error)
-        alert("Account already exists or infomation entered is invalid!");
+        alert("Information entered is invalid. Please check before proceeding");
       })
   }
 
@@ -100,7 +91,7 @@ class Register extends Component {
           />
           <br />
           <RaisedButton
-            label="Register"
+            label="CreateProject"
             primary={true}
             style={style}
             onClick={(event) => this.handleClick(event)}
@@ -113,4 +104,4 @@ class Register extends Component {
 const style = {
   margin: 15,
 }
-export default Register
+export default CreateProject
