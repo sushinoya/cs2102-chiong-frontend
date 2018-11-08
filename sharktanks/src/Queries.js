@@ -203,6 +203,13 @@ export function updateDonationId(donationId) {
 	return axios.post(SERVER_URL + 'updateDonationId', params)
 }
 
+export function addKeyword(keyword) {
+	const params = {
+		keyword: keyword
+	}
+	return axios.post(SERVER_URL + 'addKeyword', params)
+}
+
 
 
 

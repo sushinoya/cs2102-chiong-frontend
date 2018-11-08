@@ -3,7 +3,7 @@ import './assets/style.min.css'
 
 import { getProjects, getProjectWithId, getProjectFunding, getProjectWithStatus, getProjectWithCategory, createUser, getAllKeywords, 
 getAllStatuses, getAllCategories, getProjectWithUser, 
-deleteProject, createProject, giveDonation, updateUserId, updateProjectId, updateDonationId } from './Queries'
+deleteProject, createProject, giveDonation, updateUserId, updateProjectId, updateDonationId, addKeyword } from './Queries'
 
 import { loggedInUser, localLogIn, localLogOut } from './LoginUtil'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -19,7 +19,7 @@ class TestPage extends Component {
 
   componentWillMount() {
     // Test your query here and set the result to be the state
-    getAllKeywords().then((res) => {
+    addKeyword("penis").then((res) => {
       this.setState({ data: res.data })
     })
   }
