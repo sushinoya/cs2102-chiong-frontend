@@ -5,11 +5,12 @@ import photo2 from './assets/img/products/lamp2-trans.png'
 const ProductImage = (props) => {
   let file
   let fileId
-  let placeholder = [photo1, photo2][Math.floor(0.5 + Math.random())]
+  let placeholder = [photo1, photo2][Math.floor(0.5 + Math.random())];
 
   var isThereAMainImage = (product) => {
     //fileId = props.product.relationships.main_image.data.id;
     file = props.product.url
+    console.log("file being printed")
     console.log(file)
     // file = props.products.included.main_images.find(function(el) {
     //   return fileId === el.id;
@@ -45,8 +46,10 @@ const ProductImage = (props) => {
   }
 
   try {
+    console.log("blah is not being executed")
     return isThereAMainImage(props.product)
   } catch (e) {
+    console.log("blah is being executed")
     return isThereAFile(props.product)
   }
 }
