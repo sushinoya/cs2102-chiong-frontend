@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import './assets/style.min.css'
-import { getProjects, getProjectWithId, getProjectFunding, getProjectWithStatus, getProjectWithCategory, createUser, getAllKeywords} from './Queries'
+
+import { getProjects, getProjectWithId, getProjectFunding, getProjectWithStatus, getProjectWithCategory, createUser, getAllKeywords, 
+getAllStatuses, getAllCategories, getProjectWithUser, 
+deleteProject, createProject, giveDonation, updateUserId, updateProjectId, updateDonationId } from './Queries'
+
 import { loggedInUser, localLogIn, localLogOut } from './LoginUtil'
 import RaisedButton from 'material-ui/RaisedButton'
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
