@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { getProjectWithTitle, getprojectwithcategory } from './Queries'
+import './assets/style.min.css';
+import styles from './SearchBar.module.scss'
 
 class SearchBar extends Component {
     constructor(props) {
@@ -47,9 +49,8 @@ class SearchBar extends Component {
         console.log("asshole");
         console.log(this.state.searchString);
         return (
-            <div>
-            <div>
-              <form onSubmit={this.handleSubmit}>
+            <div className={styles.flexContainer}>
+              <form className={styles.flexContainer} onSubmit={this.handleSubmit}>
                 <input
                 type="text"
                 value={this.state.searchString}
@@ -57,9 +58,8 @@ class SearchBar extends Component {
                 onChange={this.handleChange}
                 placeholder="Type here"
                 />
-                <input type="submit"></input>
+                <button className="submit" type="submit">Submit</button>
               </form>
-            </div>
             </div>
         );
     }
