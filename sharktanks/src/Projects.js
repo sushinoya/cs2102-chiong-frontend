@@ -10,13 +10,13 @@ class Projects extends Component {
     super(props)
     this.state = {
       projects: [],
+      searchBar: {}
     }
   }
 
   getProjects = () => {
     return axios.get('http://localhost:8080' + '/' + 'allProjects')
   }
-
   componentWillMount() {
     this.getProjects().then((response) => {
       console.log(response.data)
@@ -28,14 +28,18 @@ class Projects extends Component {
     return <div className="price">Category: {product.name}</div>
   }
 
+  onUpdate = (projects) => {
+    this.setState({ projects: projects  })
+  }
+
   render() {
     if (this.state.projects.length > 0) {
       var products = this.state.projects
 
       return (
         <div>
-        <SearchBar />
         <OnlyLoggedInComponent>
+        <SearchBar onUpdate={this.onUpdate} page="projects"/>
           <main role="main" id="container" className="main-container push">
             <section className="products">
               <div className="content">

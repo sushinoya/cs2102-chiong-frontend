@@ -3,7 +3,7 @@ import styles from './Project.module.scss'
 import ProductImage from './ProductImage'
 import { redirect } from 'react-router-dom'
 import './assets/style.min.css'
-import { getProjectFunding } from './Queries.js'
+import { getProjectFunding, getProjectInformation } from './Queries.js'
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
 
 const axios = require('axios')
@@ -19,7 +19,8 @@ class ProjectPage extends Component {
     this.state = {
       project: null,
       investValue: 0,
-      productValue: 0
+      productValue: 0,
+      data: []
     }
   }
 
@@ -34,6 +35,12 @@ class ProjectPage extends Component {
         }
       })
     })
+
+    getProjectInformation(this.projectID).then((data) => {
+      console.log(data);
+      this.setState({data: data.data[0]});
+    }) 
+
   }
 
   getProjects = () => {
@@ -146,13 +153,13 @@ class ProjectPage extends Component {
 
                   <div className="details-body">
                     <div className="row">
-                      <div className="label">Duration</div>
-                      <div className="value">{product.duration}</div>
+                      <div className="label"> Status: </div>
+                      <div className="value">{this.state.data.statusword}</div>
                     </div>
 
                     <div className="row">
-                      <div className="label">Start Date</div>
-                      <div className="value">{product.startdate}</div>
+                      <div className="label"> {this.state.data.role}: </div>
+                      <div className="value">{this.state.data.name}</div>
                     </div>
 
                     <div className="row">

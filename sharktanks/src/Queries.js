@@ -15,13 +15,27 @@ export function getProjectWithId(id) { //searchByProjects
   	return axios.get(SERVER_URL + 'searchByProject', { params })
 }
 
+export function getProjectWithTitle(title) {
+  const params = {
+    title: title
+  }
+  return axios.get(SERVER_URL + 'searchByProjects', {params})
+}
+
 // Searches for all the projects with a particular statusId. 
 
-export function getProjectWithCategory(id) {
+export function getprojectwithcategory(category) {
 		const params = {
-		id: id
+		name: category
 	}
-  	return axios.get(SERVER_URL + 'searchByCategory', { params })
+  	return axios.get(SERVER_URL + 'searchByCategories', { params })
+}
+
+export function getProjectInformation(id) {
+  const params = {
+    id: id
+  }
+  return axios.get(SERVER_URL + 'projectInformation', { params })
 }
 
 export function getProjectWithStatus(id) {

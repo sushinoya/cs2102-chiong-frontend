@@ -144,13 +144,13 @@ class CreateProject extends Component {
       return <MenuItem value={x} primaryText={x} />;
     });
 
-    // const keywordCheckboxes = this.state.allKeywords.map(
-    const keywordCheckboxes = "abh sda asdasd sdasd asdsad asdsad".split(' ').map(
+    const keywordCheckboxes = this.state.allKeywords.map(
       (x) => {
+        console.log(x);
         return (
           <Checkbox
             className={styles.flexyItem}
-            label={x}
+            label={x.words}
             onCheck={() => this.updateCheck(x)}
           />
         );
