@@ -9,6 +9,7 @@ import { pink100 } from 'material-ui/styles/colors';
 import { loggedInUser } from './LoginUtil';
 import {Link} from 'react-router-dom';
 
+
 const axios = require('axios')
 
 // TODO: Get the name of the user who owns this project from the backend
@@ -162,7 +163,7 @@ class ProjectPage extends Component {
     }
 
     return <OnlyLoggedInComponent>
-      <main role="main" id="container" className="main-container push">
+      <main role="main" id="container" className="main-container push contain-everything">
         <section className="product">
           <div className="content">
             <div className="product-listing">

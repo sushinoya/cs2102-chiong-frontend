@@ -1,0 +1,360 @@
+@charset "UTF-8";
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica, sans-serif;
+  font-size: 100%;
+  line-height: 1.45;
+  color: #141414;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  margin: 1rem 0;
+  color: white;
+  font-weight: 500;
+  font-size: 1.3rem;
+  background: #123144;
+  letter-spacing: .02em;
+  border: none;
+  border-radius: 5px;
+  padding: .8rem 1rem .9rem;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 43.75em) {
+  .btn {
+    padding: .5rem .7rem .6rem;
+    font-size: 1rem;
+  }
+}
+.btn:hover {
+  background: #008ee8;
+  color: #fff;
+}
+.btn:focus, .btn:active, .btn:focus:active {
+  background: #006eb5;
+  border-color: #006eb5;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5) inset;
+}
+
+.container {
+  text-align: center;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 900px;
+}
+
+header {
+  color: white;
+  background: #123144;
+  padding: 10rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+@media (max-width: 43.75em) {
+  header {
+    padding: 2rem 0;
+  }
+}
+header h1 {
+  color: white;
+  font-size: 5rem !important;
+  margin: 0 0 1rem;
+}
+@media (max-width: 43.75em) {
+  header h1 {
+    font-size: 5rem !important;
+  }
+}
+header h2 {
+  font-weight: 300;
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+  color: white;
+}
+@media (max-width: 43.75em) {
+  header h2 {
+    font-size: 1.5rem;
+    color: white;
+
+  }
+}
+
+.det {
+  /* margin-left: 20px !important; */
+  text-align: center;
+}
+section {
+  margin-top: 0px !important;
+  background: #fff;
+  color: #1c262b;
+  padding: 3.5rem 0;
+}
+@media (max-width: 43.75em) {
+  section {
+    padding: 2rem 0;
+  }
+}
+section.section--primary {
+  background: #123144;
+  color: #fff;
+}
+section.section--primary--alt {
+  background: #27a4f4;
+  color: #fff;
+}
+section.section--primary--light {
+  background: rgba(0, 126, 206, 0.1);
+}
+section.section--grey {
+  background: #1c262b;
+  color: #fff;
+}
+section.section--grey--light {
+  background: #29363e;
+  color: #fff;
+}
+section h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0 0 1rem;
+}
+@media (max-width: 43.75em) {
+  section h3 {
+    font-size: 1.5rem;
+  }
+}
+section li {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+section p {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.col, .col-7, .col-3, .col-5 {
+  margin: 0 1.5%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.col-7 {
+  width: 64%;
+}
+@media (max-width: 43.75em) {
+  .col-7 {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.col-3 {
+  width: 29%;
+}
+@media (max-width: 43.75em) {
+  .col-3 {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.col-5 {
+  width: 30%;
+}
+@media (max-width: 34.375em) {
+  .col-5 {
+    width: 60%;
+    margin: 0;
+  }
+}
+
+.details {
+  text-align: left;
+}
+.details h3 {
+  font-size: 2rem;
+  text-align: left;
+}
+
+@media (max-width: 43.75em) {
+  .details-img--ball {
+    height: 200px;
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
+.features {
+  text-align: center;
+  padding: 1rem;
+}
+.features:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+@media (max-width: 43.75em) {
+  .features {
+    width: 100%;
+    margin: 0;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .features:last-child {
+    border: none;
+  }
+}
+.features i {
+  font-size: 4rem;
+  margin: 0 0 2rem 0;
+}
+@media (max-width: 43.75em) {
+  .features i {
+    font-size: 1.5rem;
+    width: 2rem;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    float: left;
+  }
+}
+.features p {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+@media (max-width: 43.75em) {
+  .features p {
+    margin-left: 3rem;
+  }
+}
+
+blockquote {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+blockquote:before {
+  display: inline-block;
+  color: #123144;
+  font-size: 2rem;
+  content: '\201C';
+}
+blockquote p {
+  margin: 0;
+  display: inline;
+  font-size: 1.5rem;
+}
+@media (max-width: 43.75em) {
+  blockquote p {
+    font-size: 1.2rem;
+  }
+}
+blockquote cite {
+  font-size: 1rem;
+  display: block;
+  margin: .5rem 0 0 1.2rem;
+  text-style: italic;
+}
+@media (max-width: 43.75em) {
+  blockquote cite {
+    font-size: .8rem;
+  }
+}
+blockquote cite:before {
+  content: '–';
+}
+
+footer {
+  background: #2d2b2a;
+  color: #fff;
+  padding: 2rem 0;
+  text-align: center;
+  font-size: .8rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+footer ul li {
+  display: inline-block;
+}
+footer ul li a {
+  display: block;
+  padding: .4rem .7rem;
+  font-size: .9rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+}
+footer ul li a:hover {
+  color: white;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--left {
+  text-align: left;
+}
+
+.bg-image {
+  background: #123144;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.bg-image:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #333 url("http://orbotix.wpengine.netdna-cdn.com/wp-content/uploads/2013/07/Faster-4H5B55491.jpg") no-repeat top center;
+  background-size: cover;
+  background-attachment: fixed;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  opacity: .8;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.bg-image.bg-image-2:before {
+  opacity: .6;
+  background-image: url("http://orbotix.wpengine.netdna-cdn.com/wp-content/uploads/2013/07/Kids3.jpg");
+  background-position: center center;
+}

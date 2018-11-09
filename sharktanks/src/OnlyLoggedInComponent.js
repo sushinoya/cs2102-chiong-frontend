@@ -17,10 +17,10 @@ class OnlyLoggedInComponent extends Component {
       this.props.children
     ) : (
       <p>
-        Please <Link to="/">Log In</Link> to continue
+        Please <Link to="/login">Log In</Link> to continue
       </p>
     )
-    return <>{content}</>
+    return <div className="contain-everything ">{content}</div>
   }
 }
 

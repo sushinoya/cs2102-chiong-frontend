@@ -8,13 +8,14 @@ import ProjectPage from './ProjectPage'
 import TestPage from './TestPage'
 import Categories  from './Categories'
 import CreateProject from './CreateProject';
+import Landing from './Landing';
 
 const Routes = () => (
   <>
     <Switch>
-      <Route exact path="/" component={WelcomePage} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/login" component={WelcomePage} />
+      <Route exact path="/register" component={WelcomePage} />
       <Route exact path="/projects" component={Projects} />
       <Route exact path="/categories" component={Categories} />
       <Route exact path="/test" component={TestPage} />

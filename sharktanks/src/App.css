@@ -6,6 +6,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* align-items: ; */
+}
+
+.contain-everything {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 

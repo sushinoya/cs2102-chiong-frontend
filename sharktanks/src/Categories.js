@@ -56,7 +56,7 @@ class Categories extends Component {
         var projects = category_projects[1];
 
         return (
-        <div>
+        <div className="contain-everything">
         <h5>{category}</h5>
         <div className="product-list">
         {projects.map(function(product) {
@@ -97,15 +97,13 @@ class Categories extends Component {
         </div>;
     }
 
-    return (
-      <main role="main" id="container" className="main-container push">
+    return <main role="main" id="container" className="main-container contain-everything">
         <section className="products">
           <div className="content">
-            <p>You do not have any products</p>
+            <p>There are no products</p>
           </div>
         </section>
-      </main>
-    )
+      </main>;
   }
 }
 

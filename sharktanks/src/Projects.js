@@ -37,7 +37,7 @@ class Projects extends Component {
       var products = this.state.projects
 
       return (
-        <div>
+        <div className="contain-everything">
         <OnlyLoggedInComponent>
         <SearchBar onUpdate={this.onUpdate} page="projects" label="Search by name"/>
           <main role="main" id="container" className="main-container push">
@@ -87,10 +87,10 @@ class Projects extends Component {
     }
 
     return (
-      <main role="main" id="container" className="main-container push">
+      <main role="main" id="container" className="main-container contain-everything">
         <section className="products">
           <div className="content">
-            <p>You do not have any products</p>
+            <p>There are no products</p>
           </div>
         </section>
       </main>

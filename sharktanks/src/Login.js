@@ -48,7 +48,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="contain-everything">
         <div className={formStyles.flexCenter}>
           <TextField
             hintText="Enter your Email Address"
