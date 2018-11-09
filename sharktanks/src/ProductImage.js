@@ -20,7 +20,7 @@ const ProductImage = (props) => {
       (
         <img
           alt={props.product.name + '-' + props.product.description}
-          src={placeholder}
+          src={file}
           style={{ background: props.background }}
         />
       ) || <img alt="placeholder" src={placeholder} />
