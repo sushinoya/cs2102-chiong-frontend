@@ -38,6 +38,13 @@ export function getProjectInformation(id) {
   return axios.get(SERVER_URL + 'projectInformation', { params })
 }
 
+export function getProjectKeywords(id) {
+  const params = {
+    id: id
+  }
+  return axios.get(SERVER_URL +  'getKeywordsByProject', { params })
+}
+
 export function getProjectWithStatus(id) {
 		const params = {
 		id: id

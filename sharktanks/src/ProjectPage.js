@@ -3,7 +3,7 @@ import styles from './Project.module.scss'
 import ProductImage from './ProductImage'
 import { redirect } from 'react-router-dom'
 import './assets/style.min.css'
-import { getProjectFunding, getProjectInformation } from './Queries.js'
+import { getProjectFunding, getProjectInformation, getProjectKeywords } from './Queries.js'
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
 
 const axios = require('axios')
@@ -40,6 +40,13 @@ class ProjectPage extends Component {
       console.log(data);
       this.setState({data: data.data[0]});
     }) 
+
+    getProjectKeywords(this.projectID).then(data => {
+      console.log(data);
+      var newProduct = this.state.project;
+      newProduct.words = data.data;
+      this.setState({ project: newProduct})
+    })
 
   }
 
@@ -82,7 +89,7 @@ class ProjectPage extends Component {
     const tags = (product) => {
       return (
         <div>
-          {product.words.split(' ').map(function(elem) {
+          {product.words.map(function(elem, test) {
             return (
               <div style={{ display: 'inline' }} className="tag">
                 {elem}{' '}
