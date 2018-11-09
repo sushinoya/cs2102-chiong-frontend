@@ -27,7 +27,11 @@ class ProjectPage extends Component {
 
   componentWillMount() {
     getProjectFunding(this.projectID).then((data) => {
-      this.setState({ productValue: data.data[0].sum });
+      console.log("funding data")
+      console.log(data)
+      if (data.data.length != 0) {
+        this.setState({ productValue: data.data[0].sum });
+      }
     })
 
     // this.getProjects().then((data) => {
@@ -84,7 +88,9 @@ class ProjectPage extends Component {
         .then((res) => {
           console.log(res.data)
           getProjectFunding(this.projectID).then((data) => {
-            this.setState({ productValue: data.data[0].sum });
+            if (data.data.length != 0) {
+              this.setState({ productValue: data.data[0].sum });
+            }
             this.setState({ investValue: 0 })
           })
         })
@@ -98,7 +104,7 @@ class ProjectPage extends Component {
     var background = '#fff'
 
     const category = (product) => {
-      return <div className="manufacturer">Category: {product.categoryID}</div>
+      return <div className="manufacturer">Category: {product.name}</div>
     }
 
     const tagStyle = {
