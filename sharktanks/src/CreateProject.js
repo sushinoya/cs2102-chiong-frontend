@@ -103,7 +103,11 @@ class CreateProject extends Component {
     };
 
     console.log(payload);
-    axios.post(apiBaseUrl +  'createProject', { payload })
+    axios.post(apiBaseUrl +  'createProject', { payload }).then((data) => {
+      if (data.data.code == 200) {
+        alert("Successfully created project");
+      }
+    })
     // axios
     //   .post(apiBaseUrl + 'createProject', payload)
     //   .then(function (response) {
@@ -184,10 +188,6 @@ class CreateProject extends Component {
           <SelectField hintText="Select Project Status" floatingLabelText="Project Status" value={this.state.status} onChange={this.handleChangeStatus}>
             {statusMenuItems}
           </SelectField>
-
-          <TextField hintText="Separated by commas" floatingLabelText="Keywords (optional)" onChange={(event, newValue) => this.setState(
-                { keywords: newValue },
-              )} />
 
           <br />
           <div className={styles.flexy}>
