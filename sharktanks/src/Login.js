@@ -4,9 +4,9 @@ import AppBar from 'material-ui/AppBar'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import axios from 'axios'
-import { localLogIn } from './LoginUtil'
+import { loggedInUser, localLogIn } from './LoginUtil';
 import formStyles from './FormStyles.module.scss'
-
+import { Redirect } from 'react-router-dom'
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -47,6 +47,9 @@ class Login extends Component {
   }
 
   render() {
+    if (loggedInUser()) {
+      return <Redirect to="/projects" />;
+    }
     return (
       <div className="contain-everything">
         <div className={formStyles.flexCenter}>

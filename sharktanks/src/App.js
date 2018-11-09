@@ -44,7 +44,7 @@ class App extends Component {
           <MuiThemeProvider muiTheme={muiTheme}>
             <>
               <AppBar
-                title="SharkTanks"
+                title="SHARKTANKS"
                 onLeftIconButtonClick={this.handleToggle}
                 iconElementRight={<LoggedStatusIndicator />}
               />
