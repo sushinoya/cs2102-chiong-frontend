@@ -3751,3 +3751,13 @@ nav a {
   animation: fadeIn 3s ease-in-out;
   margin: 4.625rem auto 0;
 }
+
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  margin: 10px !important;
+}
