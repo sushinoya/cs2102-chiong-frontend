@@ -17,7 +17,7 @@ class CreateProject extends Component {
       title: null,
       description: null,
       status: null,
-      userID: loggedInUser().userID,
+      userID: loggedInUser().userid,
       category: [],
       keywords: [],
       categoryID: null,
@@ -26,6 +26,7 @@ class CreateProject extends Component {
       possibleCategories: [],
       allKeywords: [],
       selectedKeywords: {},
+      selectedTrueKeywords: []
     };
   }
 
@@ -87,19 +88,22 @@ class CreateProject extends Component {
   };
 
   handleClick = (event) => {
+    event.preventDefault()
     var apiBaseUrl = 'http://localhost:8080/';
-
+    console.log(loggedInUser());
+    
+    console.log(this.state.selectedKeywords)
     var payload = {
       title: this.state.title,
       description: this.state.description,
-      statusID: this.state.status,
+      statusID: this.getIDForStatus(this.state.status),
       userID: this.state.userID,
-      categoryID: this.state.category,
-      keywords: this.state.keywords,
+      categoryID: this.getIDForCategory(this.state.category),
+      keywords: this.state.selectedTrueKeywords,
     };
 
     console.log(payload);
-
+    axios.post(apiBaseUrl +  'createProject', { payload })
     // axios
     //   .post(apiBaseUrl + 'createProject', payload)
     //   .then(function (response) {
@@ -132,6 +136,9 @@ class CreateProject extends Component {
     } else {
       this.state.selectedKeywords[label] = true;
     }
+    var newObj = Object.keys(this.state.selectedKeywords).filter(x  => this.state.selectedKeywords[x]);
+    console.log(newObj);
+    this.setState({ selectedTrueKeywords: newObj })
     console.log(label)
   }
 
@@ -151,7 +158,7 @@ class CreateProject extends Component {
           <Checkbox
             className={styles.flexyItem}
             label={x.words}
-            onCheck={() => this.updateCheck(x)}
+            onCheck={() => this.updateCheck(x.words)}
           />
         );
       },
