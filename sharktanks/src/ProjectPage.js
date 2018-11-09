@@ -6,6 +6,8 @@ import './assets/style.min.css'
 import { getProjectKeywords, getProjectWithId, getProjectFunding, getProjectInformation } from './Queries.js';
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
 import { pink100 } from 'material-ui/styles/colors';
+import { loggedInUser } from './LoginUtil';
+import {Link} from 'react-router-dom';
 
 const axios = require('axios')
 
@@ -126,75 +128,90 @@ class ProjectPage extends Component {
       </div>;
     };
 
-    return <OnlyLoggedInComponent>
-        <main role="main" id="container" className="main-container push">
-          <section className="product">
-            <div className="content">
-              <div className="product-listing">
-                <div className="product-image">
-                  <ProductImage product={product} background={background} />
-                </div>
-                <div className="product-description">
-                  <h2>{product.title}</h2>
-                  <p className="manufacturer">
-                    <span className="hide-content">Created </span>
-                    By <span className="word-mark">{this.state.data.name}</span>
-                  </p>
-                  {category(product)}
-                  {tags(this.state.words)}
-                  <div className="description">
-                    <p className="hide-content">Project details:</p>
-                    <p>{product.description}</p>
-                  </div>
-                  <form className="product" noValidate>
-                    <div className="quantity-input">
-                      <p className="hide-content">Project quantity.</p>
-                      <p className="hide-content">
-                        Change the invest amount by using the input box.
+    var investForm = () => {
+
+      if (loggedInUser() && loggedInUser().role != 'Investor') {
+        return <p>
+          Log in as an <Link to='/register'><b>Investor</b></Link> to invest in this project
+          </p>;
+      }
+
+
+      return (
+        <form className="product" noValidate>
+          <div className="quantity-input">
+            <p className="hide-content">Project quantity.</p>
+            <p className="hide-content">
+              Change the invest amount by using the input box.
                       </p>
-                      <input className="quantity" name="number" type="number" min="0" max="200000" value={this.state.investValue} size="2" onChange={(event) => {
-                          if (event.target.value <= 200000 && event.target.value >= 0) {
-                            changeAmount(event.target.value);
-                          }
-                        }} />
-                    </div>
-                    <button type="submit" className="submit" onClick={(e) => {
-                        persistAmount();
-                        e.preventDefault();
-                      }}>
-                      Invest
+
+            <input className="quantity" name="number" type="number" min="0" max="200000" value={this.state.investValue} size="2" onChange={(event) => {
+              if (event.target.value <= 200000 && event.target.value >= 0) {
+                changeAmount(event.target.value);
+              }
+            }} />
+          </div>
+          <button type="submit" className="submit" onClick={(e) => {
+            persistAmount();
+            e.preventDefault();
+          }}>
+            Invest
                     </button>
-                  </form>
-                </div>
+        </form>
+      )
+    }
+
+    return <OnlyLoggedInComponent>
+      <main role="main" id="container" className="main-container push">
+        <section className="product">
+          <div className="content">
+            <div className="product-listing">
+              <div className="product-image">
+                <ProductImage product={product} background={background} />
               </div>
-              <div className="product-info">
-                <div className="product-details">
-                  <div className="header">
-                    <h3>Other Project details</h3>
+              <div className="product-description">
+                <h2>{product.title}</h2>
+                <p className="manufacturer">
+                  <span className="hide-content">Created </span>
+                  By <span className="word-mark">{this.state.data.name}</span>
+                </p>
+                {category(product)}
+                {tags(this.state.words)}
+                <div className="description">
+                  <p className="hide-content">Project details:</p>
+                  <p>{product.description}</p>
+                </div>
+                {investForm()}
+              </div>
+            </div>
+            <div className="product-info">
+              <div className="product-details">
+                <div className="header">
+                  <h3>Other Project details</h3>
+                </div>
+
+                <div className="details-body">
+                  <div className="row">
+                    <div className="label"> Status: </div>
+                    <div className="value">{this.state.data.statusword}</div>
                   </div>
 
-                  <div className="details-body">
-                    <div className="row">
-                      <div className="label"> Status: </div>
-                      <div className="value">{this.state.data.statusword}</div>
-                    </div>
+                  <div className="row">
+                    <div className="label"> {this.state.data.role}: </div>
+                    <div className="value">{this.state.data.name}</div>
+                  </div>
 
-                    <div className="row">
-                      <div className="label"> {this.state.data.role}: </div>
-                      <div className="value">{this.state.data.name}</div>
-                    </div>
-
-                    <div className="row">
-                      <div className="label"> Money Raised </div>
-                      <div className="value">{this.state.productValue}</div>
-                    </div>
+                  <div className="row">
+                    <div className="label"> Money Raised </div>
+                    <div className="value">{this.state.productValue}</div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-        </main>
-      </OnlyLoggedInComponent>;
+          </div>
+        </section>
+      </main>
+    </OnlyLoggedInComponent>;
   }
 }
 

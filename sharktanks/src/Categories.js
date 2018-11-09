@@ -38,8 +38,8 @@ class Categories extends Component {
 
       return (
         <div>
-        <SearchBar onUpdate={this.onUpdate} page="categories"/>
         <OnlyLoggedInComponent>
+          <SearchBar onUpdate={this.onUpdate} page="categories" />
           <main role="main" id="container" className="main-container push">
             <section className="products">
               <div className="content">
