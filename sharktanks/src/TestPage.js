@@ -19,8 +19,11 @@ class TestPage extends Component {
 
   componentWillMount() {
     // Test your query here and set the result to be the state
-    addKeyword("penis").then((res) => {
-      this.setState({ data: res.data })
+    // addKeyword("penis").then((res) => {
+    //   this.setState({ data: res.data })
+    // })
+    getProjectWithId(1).then((data) => {
+      this.setState({ data: data.data });
     })
   }
 

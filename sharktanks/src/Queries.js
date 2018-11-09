@@ -12,7 +12,7 @@ export function getProjectWithId(id) { //searchByProjects
 	const params = {
 		id: id
 	}
-  	return axios.get(SERVER_URL + 'searchByProject', { params })
+  	return axios.get(SERVER_URL + 'getProjectById', { params })
 }
 
 export function getProjectWithTitle(title) {

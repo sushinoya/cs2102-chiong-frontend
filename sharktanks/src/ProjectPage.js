@@ -3,8 +3,9 @@ import styles from './Project.module.scss'
 import ProductImage from './ProductImage'
 import { redirect } from 'react-router-dom'
 import './assets/style.min.css'
-import { getProjectFunding, getProjectInformation, getProjectKeywords } from './Queries.js'
+import { getProjectKeywords, getProjectWithId, getProjectFunding, getProjectInformation } from './Queries.js';
 import OnlyLoggedInComponent from './OnlyLoggedInComponent'
+import { pink100 } from 'material-ui/styles/colors';
 
 const axios = require('axios')
 
@@ -26,28 +27,35 @@ class ProjectPage extends Component {
 
   componentWillMount() {
     getProjectFunding(this.projectID).then((data) => {
-      this.setState({productValue: data.data[0].sum});
+      this.setState({ productValue: data.data[0].sum });
     })
-    this.getProjects().then((data) => {
-      data.data.map((project) => {
-        if (project.projectid === this.projectID) {
-          this.setState({ project: project })
-        }
-      })
-    })
+
+    // this.getProjects().then((data) => {
+    //   data.data.map((project) => {
+    //     if (project.projectid === this.projectID) {
+    //       this.setState({ project: project })
+    //     }
+    //   })
+    // })
+
+    getProjectWithId(this.projectID).then((data) => {
+      console.log("data");
+      console.log(data);
+      this.setState({ project: data.data[0] });
+    });
 
     getProjectInformation(this.projectID).then((data) => {
       console.log(data);
-      this.setState({data: data.data[0]});
-    }) 
+      this.setState({ data: data.data[0] });
+    })
 
     getProjectKeywords(this.projectID).then(data => {
       console.log(data);
-      var newProduct = this.state.project;
-      newProduct.words = data.data;
-      this.setState({ project: newProduct})
+      // var newProduct = this.state.project;
+      // newProduct.words = data.data;
+      console.log("set words")
+      this.setState({ words: data.data })
     })
-
   }
 
   getProjects = () => {
@@ -56,9 +64,12 @@ class ProjectPage extends Component {
 
   render() {
     var product = this.state.project
+    var words = this.state.words
+    var info = this.state.data;
+
     console.log('stop')
     console.log(product)
-    if (product == null) {
+    if (product == null || words == null || info == null) {
       return <div />
     }
 
@@ -72,12 +83,16 @@ class ProjectPage extends Component {
         })
         .then((res) => {
           console.log(res.data)
+          getProjectFunding(this.projectID).then((data) => {
+            this.setState({ productValue: data.data[0].sum });
+            this.setState({ investValue: 0 })
+          })
         })
     }
 
     const changeAmount = (sum) => {
-      var newValue = parseInt(this.state.investValue) + parseInt(sum, 10)
-      this.setState({ investValue: newValue })
+      // var newValue = parseInt(this.state.investValue) + parseInt(sum, 10)
+      this.setState({ investValue: parseInt(sum) });
     }
 
     var background = '#fff'
@@ -86,21 +101,26 @@ class ProjectPage extends Component {
       return <div className="manufacturer">Category: {product.categoryID}</div>
     }
 
-    const tags = (product) => {
-      return (
-        <div>
-          {product.words.map(function(elem, test) {
-            return (
-              <div style={{ display: 'inline' }} className="tag">
-                {elem}{' '}
-              </div>
-            )
-          })}
-        </div>
-      )
+    const tagStyle = {
+      display: 'inline',
+      backgroundColor: '#f0f0f0',
+      marginRight: '10px',
+      padding: '5px',
+      color: '#50505b',
+      textAlign: 'center'
     }
-    return (
-      <OnlyLoggedInComponent>
+
+    const tags = (k) => {
+      return <div>
+        {words.map(function (elem) {
+          return <div style={tagStyle} className="tag">
+            {elem}{' '}
+          </div>;
+        })}
+      </div>;
+    };
+
+    return <OnlyLoggedInComponent>
         <main role="main" id="container" className="main-container push">
           <section className="product">
             <div className="content">
@@ -112,10 +132,10 @@ class ProjectPage extends Component {
                   <h2>{product.title}</h2>
                   <p className="manufacturer">
                     <span className="hide-content">Created </span>
-                    By <span className="word-mark">{product.userID}</span>
+                    By <span className="word-mark">{this.state.data.name}</span>
                   </p>
                   {category(product)}
-                  {tags(product)}
+                  {tags(this.state.words)}
                   <div className="description">
                     <p className="hide-content">Project details:</p>
                     <p>{product.description}</p>
@@ -126,27 +146,16 @@ class ProjectPage extends Component {
                       <p className="hide-content">
                         Change the invest amount by using the input box.
                       </p>
-                      <input
-                        className="quantity"
-                        name="number"
-                        type="number"
-                        min="1`"
-                        max="20000000"
-                        value={this.state.investValue}
-                        size="2"
-                        onChange={(event) => {
-                          changeAmount(event.target.value)
-                        }}
-                      />
+                      <input className="quantity" name="number" type="number" min="0" max="200000" value={this.state.investValue} size="2" onChange={(event) => {
+                          if (event.target.value <= 200000 && event.target.value >= 0) {
+                            changeAmount(event.target.value);
+                          }
+                        }} />
                     </div>
-                    <button
-                      type="submit"
-                      className="submit"
-                      onClick={(e) => {
-                        persistAmount()
-                        e.preventDefault()
-                      }}
-                    >
+                    <button type="submit" className="submit" onClick={(e) => {
+                        persistAmount();
+                        e.preventDefault();
+                      }}>
                       Invest
                     </button>
                   </form>
@@ -179,8 +188,7 @@ class ProjectPage extends Component {
             </div>
           </section>
         </main>
-      </OnlyLoggedInComponent>
-    )
+      </OnlyLoggedInComponent>;
   }
 }
 
