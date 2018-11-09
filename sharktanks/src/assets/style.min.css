@@ -2970,6 +2970,8 @@ nav a {
   display: flex;
   flex-wrap: wrap;
   margin-top: 3.75rem;
+  /* align-items: flex-start;
+  justify-content: flex-start; */
 }
 .product-list .product-item {
   display: flex;

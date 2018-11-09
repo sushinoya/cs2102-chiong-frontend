@@ -56,7 +56,7 @@ class SearchBar extends Component {
                 value={this.state.searchString}
                 ref="search"
                 onChange={this.handleChange}
-                placeholder="Type here"
+                placeholder={this.props.label}
                 />
                 <button className="submit" type="submit">Submit</button>
               </form>

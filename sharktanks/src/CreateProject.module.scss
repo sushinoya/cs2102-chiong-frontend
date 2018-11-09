@@ -1,5 +1,5 @@
 .flexy {
-  width: 500px;
+  width: 620px;
   display: flex;
   flex-flow: row wrap;
   align-content: space-between;
@@ -7,5 +7,20 @@
 }
 
 .flexy>* {
-        flex: 1 1 160px;
+    flex: 1 1 160px;
+
+    input {
+       height: 10px !important;
+       margin: 0px !important;
+    }
+  
 }
+
+.submitButton {
+  margin: 20px 0px;
+}
+
+// .flexyItem>* {
+//   height: 1px !important;
+//   margin: 0px !important;
+// }

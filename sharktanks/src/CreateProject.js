@@ -9,7 +9,7 @@ import { loggedInUser } from './LoginUtil';
 import { getAllKeywords, getAllStatuses, getAllCategories } from './Queries';
 import Checkbox from 'material-ui/Checkbox';
 import styles from './CreateProject.module.scss'
-
+import OnlyLoggedInComponent from './OnlyLoggedInComponent';
 class CreateProject extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class CreateProject extends Component {
       title: null,
       description: null,
       status: null,
-      userID: loggedInUser().userid,
+      userID: null,
       category: [],
       keywords: [],
       categoryID: null,
@@ -31,6 +31,10 @@ class CreateProject extends Component {
   }
 
   componentWillMount() {
+    if (loggedInUser()) {
+      this.setState({ userID: loggedInUser().userid })
+    }
+
     getAllCategories().then((data) => {
       this.setState({ allCategoriesHash: data.data });
       console.log(this.state.allCategoriesHash);
@@ -168,7 +172,7 @@ class CreateProject extends Component {
       },
     );
 
-    return <div>
+    return <OnlyLoggedInComponent>
         <div className={formStyles.flexCenter}>
           <TextField hintText="Enter Project Title" floatingLabelText="Title" onChange={(event, newValue) => this.setState(
                 { title: newValue },
@@ -195,9 +199,9 @@ class CreateProject extends Component {
           </div>
 
           <br />
-          <RaisedButton label="Create Project" primary={true} onClick={(event) => this.handleClick(event)} />
+          <RaisedButton className={styles.submitButton} label="Create Project" primary={true} onClick={(event) => this.handleClick(event)} />
         </div>
-      </div>;
+      </OnlyLoggedInComponent>;
   }
 }
 

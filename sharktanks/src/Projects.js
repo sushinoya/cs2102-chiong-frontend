@@ -39,7 +39,7 @@ class Projects extends Component {
       return (
         <div>
         <OnlyLoggedInComponent>
-        <SearchBar onUpdate={this.onUpdate} page="projects"/>
+        <SearchBar onUpdate={this.onUpdate} page="projects" label="Search by name"/>
           <main role="main" id="container" className="main-container push">
             <section className="products">
               <div className="content">
